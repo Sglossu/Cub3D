@@ -126,7 +126,5 @@ void	draw(t_all *all)
 	all->info.luchi_array[luchi] = '\0';
 	refresh_vars(all);
 	((cnt = offset_fov(all, 0)) > 1) ? sort(all, cnt) : 0;
-//	while (cnt-- > 0)
-//		draw_sprite(all, cnt); // убрали спрайты
 	mlx_put_image_to_window(all->win.mlx, all->win.mlx_win, all->win.img, 0, 0);
 }

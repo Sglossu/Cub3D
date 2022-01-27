@@ -50,62 +50,6 @@ void	draw_3d(t_all *all, int wall, int luchi, double k)
 	}
 }
 
-double	init_sprite_vars(t_all *all, int q)
-{
-	int		to_skip;
-	double	n;
-
-	n = 0;
-	all->sprite.start = all->height / 2 - all->info.size[q] / 2;
-	all->sprite.end = all->height / 2 + all->info.size[q] / 2;
-	all->sprite.left = all->info.center[q] - all->info.size[q] / 2;
-	all->sprite.right = all->info.center[q] + all->info.size[q] / 2;
-	all->sprite.act_width = all->sprite.right - all->sprite.left;
-	all->sprite.h_iter = (double)all->tex.sprite.tex_height /
-			(double)all->info.size[q];
-	all->sprite.w_iter = (double)all->tex.sprite.tex_width /
-			(double)all->sprite.act_width;
-	if (all->sprite.left < 0)
-		all->sprite.fact_width = all->sprite.right;
-	else if (all->sprite.right > all->width && all->sprite.left < all->width)
-		all->sprite.fact_width = all->width - all->sprite.left;
-	else
-		all->sprite.fact_width = all->sprite.act_width;
-	to_skip = all->sprite.act_width - all->sprite.fact_width;
-	if (all->sprite.left < 0)
-		while (to_skip-- > 0)
-			n += all->sprite.w_iter;
-		return (n);
-}
-
-//void	draw_sprite(t_all *all, int q)
-//{
-//	int		color;
-//	double	k;
-//	double	n;
-//
-//	n = init_sprite_vars(all, q);
-//	(all->sprite.left < 0) ? all->sprite.left = 0 : 0;
-//	(all->sprite.right > all->width) ? all->sprite.right = all->width : 0;
-//	while (all->sprite.left < all->sprite.right)
-//	{
-//		k = 0;
-//		all->sprite.start = all->height / 2 - all->info.size[q] / 2;
-//		while (all->sprite.start < all->sprite.end &&
-//		all->sprite.start <= all->height)
-//		{
-//			color = get_color(&(all->tex.sprite), n, k);
-//			if (all->info.luchi_array[all->sprite.left] >
-//			all->info.sp_len[q] && color)
-//				pxl(&(all->win), all->sprite.left, all->sprite.start, color);
-//			all->sprite.start++;
-//			k += all->sprite.h_iter;
-//		}
-//		all->sprite.left++;
-//		n += all->sprite.w_iter;
-//	}
-//}
-
 void	draw_floor(t_all *all)
 {
 	int	i;
