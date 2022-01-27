@@ -52,7 +52,7 @@
 # Debug files
 *.dSYM/i
 .idea/
-#/cmake-build-debug/
+/cmake-build-debug/
 *.su
 *.idb
 *.pdb
