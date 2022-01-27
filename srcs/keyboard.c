@@ -54,13 +54,13 @@ void	move_rotate(t_all *all, int keycode)
 
 int		key_hook(int keycode, t_all *all)
 {
-	(keycode == FORWARD || keycode == BACK) ?
-		move_forward_and_back(all, keycode) : 0;
-	(keycode == LEFT || keycode == RIGHT) ?
-		move_left_and_right(all, keycode) : 0;
-	(keycode == ROTATE_LEFT || keycode == ROTATE_RIGHT) ?
-		move_rotate(all, keycode) : 0;
-	if (keycode == 46)
+	if (keycode == FORWARD || keycode == BACK)
+		move_forward_and_back(all, keycode);
+	if (keycode == LEFT || keycode == RIGHT)
+		move_left_and_right(all, keycode);
+	if (keycode == ROTATE_LEFT || keycode == ROTATE_RIGHT)
+		move_rotate(all, keycode);
+	if (keycode == M)
 	{
 		if (!all->minimap_flag)
 			all->minimap_flag = 1;
@@ -70,9 +70,11 @@ int		key_hook(int keycode, t_all *all)
 			mlx_clear_window(all->win.mlx, all->win.mlx_win);
 		}
 	}
-	(keycode == ESC) ? exit(0) : 0;
+	if (keycode == ESC)
+		exit(0);
 	draw(all);
-	(all->minimap_flag) ? init_map_to_buffer(all) : 0;
+	if (all->minimap_flag)
+		init_map_to_buffer(all);
 	mlx_destroy_image(all->win.mlx, all->win.img);
 	new_image(all);
 	return (0);

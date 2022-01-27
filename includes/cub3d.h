@@ -15,6 +15,7 @@
 # define ROTATE_LEFT 123
 # define ROTATE_RIGHT 124
 # define ESC 53
+# define M 46
 
 typedef	struct	s_check {
 	int			r;

@@ -26,6 +26,13 @@ void	load_textures(t_all *all)
 	&all->tex.sprite.line_length, &all->tex.sprite.endian);
 }
 
+int	close_window(void)
+{
+	printf("Exit\n");
+	exit(0);
+	return (1);
+}
+
 void	start(t_all *all)
 {
 	all->ray.pdx = cos(all->ray.pa);
@@ -52,6 +59,7 @@ int		main(int ac, char **av)
 		init_arrays(&all);
 		start(&all);
 		mlx_hook(all.win.mlx_win, 2, 1L << 0, &key_hook, &all);
+		mlx_hook(all.win.mlx_win, 17, 0, close_window, NULL);
 		mlx_loop(all.win.mlx);
 	}
 	else

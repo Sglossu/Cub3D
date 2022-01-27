@@ -9,8 +9,10 @@ double	find_side(t_all *all, int quarter, double start)
 			all->ray.x += 0.005 * cos(start);
 		else
 		{
-			(quarter == 4 || quarter == 1) ? all->side = 1 : 0;
-			(quarter == 2 || quarter == 3) ? all->side = 3 : 0;
+			if (quarter == 4 || quarter == 1)
+				all->side = 1;
+			if (quarter == 2 || quarter == 3)
+				all->side = 3;
 			return (sqrt(pow(all->ray.x - all->ray.px, 2) +
 			pow(all->ray.y - all->ray.py, 2)));
 		}
@@ -19,8 +21,10 @@ double	find_side(t_all *all, int quarter, double start)
 			all->ray.y += 0.005 * sin(start);
 		else
 		{
-			(quarter == 1 || quarter == 2) ? all->side = 2 : 0;
-			(quarter == 3 || quarter == 4) ? all->side = 4 : 0;
+			if (quarter == 1 || quarter == 2)
+				all->side = 2;
+			if (quarter == 3 || quarter == 4)
+				all->side = 4;
 			return (sqrt(pow(all->ray.x - all->ray.px, 2) +
 			pow(all->ray.y - all->ray.py, 2)));
 		}
@@ -87,7 +91,7 @@ int		offset_fov(t_all *all, int tmp)
 
 int		quarter_set(double start)
 {
-	if (fix_ang(start) >= 3 * M_PI / 2 && fix_ang(start) < M_PI * 2)
+	if (fix_ang(start) >= 3 * M_PI / 2 && fix_ang(start) < 2 * M_PI)
 		return (1);
 	else if (fix_ang(start) >= 0 && fix_ang(start) < M_PI / 2)
 		return (2);
@@ -122,7 +126,7 @@ void	draw(t_all *all)
 	all->info.luchi_array[luchi] = '\0';
 	refresh_vars(all);
 	((cnt = offset_fov(all, 0)) > 1) ? sort(all, cnt) : 0;
-	while (cnt-- > 0)
-		draw_sprite(all, cnt);
+//	while (cnt-- > 0)
+//		draw_sprite(all, cnt); // убрали спрайты
 	mlx_put_image_to_window(all->win.mlx, all->win.mlx_win, all->win.img, 0, 0);
 }

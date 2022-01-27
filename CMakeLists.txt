@@ -23,5 +23,5 @@ FILE(GLOB SRC
 add_executable(Cub3D ${SRC})
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -L ${CMAKE_CURRENT_SOURCE_DIR}/minilibx_opengl/ -framework OpenGL -framework AppKit")
 
-include_directories(Cub3D ${CMAKE_CURRENT_SOURCE_DIR}/inc/)			# Расположение заголовочных файлов
-target_link_libraries (Cub3D ${CMAKE_CURRENT_SOURCE_DIR}/libmlx.a)
+include_directories(Cub3D ${CMAKE_CURRENT_SOURCE_DIR}/includes/)			# Расположение заголовочных файлов
+target_link_libraries (Cub3D ${CMAKE_CURRENT_SOURCE_DIR}/mlx/libmlx.a)
