@@ -2,20 +2,37 @@
 
 void	ft_error(int code)
 {
-	(code == 0) ? write(1, "Bad resolution set", 18) : 0;
-	(code == 1) ? write(1, "Not enoght arguments", 21) : 0;
-	(code == 2) ? write(1, "Bad map extension. Must be '.cub'", 33) : 0;
-	(code == 3) ? write(1, "Bad texture extension", 21) : 0;
-	(code == 4) ? write(1, "Bad color set", 13) : 0;
-	(code == 5) ? write(1, "The map isn't closed or not corrected", 37) : 0;
-	(code == 6) ? write(1, "Not access symbols in map", 25) : 0;
-	(code == 7) ? write(1, "No player in the map", 20) : 0;
-	(code == 77) ? write(1, "Two player in map", 17) : 0;
-	(code == 99) ? write(1, "Fail third argument", 19) : 0;
-	(code == 101) ? write(1, "Duplicate parameters", 20) : 0;
-	(code == 202) ? write(1, "Trash in file", 13) : 0;
-	write(1, "\n", 1);
-	exit(0);
+	if (code == 0)
+		write(1, "Bad resolution set\n", 19);
+	if (code == 1)
+		write(1, "Wrong number of arguments\n", 22);
+	if (code == 2)
+		write(1, "Bad map extension. Must be '.cub'\n", 34);
+	if (code == 3)
+		write(1, "Bad texture extension\n", 22);
+	if (code == 4)
+		write(1, "Bad color set\n", 14);
+	if (code == 5)
+		write(1, "The map isn't closed or not corrected\n", 38);
+	if (code == 6)
+		write(1, "Not access symbols in map\n", 26);
+	if (code == 7)
+		write(1, "No player in the map\n", 21);
+	if (code == 8)
+		write(1, "Map is directory\n", 17);
+//	if (code == 9)
+//		write(1, "\n", );
+	if (code == 10)
+		write(1, "Error with memory allocation\n", 29);
+	if (code == 77)
+		write(1, "Two player in map\n", 18);
+	if (code == 99)
+		write(1, "Fail third argument\n", 20);
+	if (code == 101)
+		write(1, "Duplicate parameters\n", 21);
+	if (code == 202)
+		write(1, "Trash in file\n", 14);
+	exit(code);
 }
 
 void	error_check(t_all *all)

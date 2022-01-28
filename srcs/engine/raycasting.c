@@ -78,8 +78,6 @@ int		offset_fov(t_all *all, int tmp)
 		{
 			offset_x += 0.005 * cos(start);
 			offset_y += 0.005 * sin(start);
-			(all->map[(int)offset_y][(int)offset_x] == '2') ?
-			sub_offset_fov(all, offset_x, offset_y, offset_luchi) : 0;
 		}
 		start += M_PI / (all->width * 4);
 		offset_luchi++;
@@ -125,6 +123,8 @@ void	draw(t_all *all)
 	}
 	all->info.luchi_array[luchi] = '\0';
 	refresh_vars(all);
-	((cnt = offset_fov(all, 0)) > 1) ? sort(all, cnt) : 0;
+	cnt = offset_fov(all, 0);
+	if (cnt > 1)
+		sort(all, cnt);
 	mlx_put_image_to_window(all->win.mlx, all->win.mlx_win, all->win.img, 0, 0);
 }

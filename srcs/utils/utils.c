@@ -65,7 +65,10 @@ int		no_clip(t_all *all, int a)
 	else if (a == 3 || a == 4)
 		no_clip2(all, a, &temppx, &temppy);
 	c = all->map[(int)(temppy)][(int)(temppx)];
-	return (c == '0' || c == 'S' || c == 'E' || c == 'W' || c == 'N') ? 1 : 0;
+	if (c == '0' || c == 'S' || c == 'E' || c == 'W' || c == 'N')
+		return (1);
+	else
+		return (0);
 }
 
 int		check_xpm_extension(char *s)

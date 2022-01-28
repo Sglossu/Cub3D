@@ -48,7 +48,8 @@ int		line_count(t_all *all, char *av, int fd)
 	int		i;
 
 	fd = open(av, O_RDONLY);
-	(fd < 0) ? exit(0) : 0;
+	if (fd < 0)
+		ft_error(5);
 	all->longer_string = 0;
 	i = 0;
 	while (get_next_line(fd, &line) > 0)
@@ -109,7 +110,9 @@ void	open_map(t_all *all, char *av)
 	if (fd < 0)
 		ft_error(11);
 	line_cnt = line_count(all, av, fd);
-	(!(all->map = (char**)malloc(sizeof(char*) * line_cnt))) ? exit(0) : 0;
+	all->map = (char**)malloc(sizeof(char*) * line_cnt);
+	if (!all->map)
+		ft_error(10);
 	while (get_next_line(fd, &line) > 0)
 	{
 		if (get_values(all, line, &i) == 1)
