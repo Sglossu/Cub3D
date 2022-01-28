@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sglossu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/28 21:28:39 by sglossu           #+#    #+#             */
+/*   Updated: 2022/01/28 21:28:41 by sglossu          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -91,14 +103,12 @@ void			draw(t_all *all);
 void			draw_floor(t_all *all);
 void			draw_3d(t_all *all, int wall, int luchi, double k);
 void			refresh_vars(t_all *all);
-void			sort(t_all *all, int cnt);
 int				valid_keys(char c, char d);
 void			open_map(t_all *all, char *file_name);
 void			player_detect(t_all *all, int lines, int i);
 void			map_hole_check(t_all *all, int line_max);
 void			c_color_parser(t_all *all, char *s);
 void			f_color_parser(t_all *all, char *s);
-void			sprite_parser(t_all *all, char *s, int code);
 void			tex_parser(t_all *all, char *s, int code);
 void			tex_parser2(t_all *all, char *s, int code);
 void			resolution_parser(t_all *all, char *s);
