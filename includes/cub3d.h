@@ -51,17 +51,6 @@ typedef	struct	s_data {
 	char		*path;
 }				t_data;
 
-typedef	struct	s_sprite {
-	int			start;
-	int			end;
-	int			left;
-	int			right;
-	int			fact_width;
-	int			act_width;
-	double		h_iter;
-	double		w_iter;
-}				t_sprite;
-
 typedef	struct	s_tex {
 	int			floor_color;
 	int			ceiling_color;
@@ -69,7 +58,6 @@ typedef	struct	s_tex {
 	t_data		w;
 	t_data		e;
 	t_data		n;
-	t_data		sprite;
 }				t_tex;
 
 typedef	struct	s_ray {
@@ -80,7 +68,6 @@ typedef	struct	s_ray {
 	double		py;
 	double		x;
 	double		y;
-	int			no_clip;
 }				t_ray;
 
 typedef	struct	s_all {
@@ -91,9 +78,7 @@ typedef	struct	s_all {
 	int			scale;
 	int			minimap_flag;
 	int			longer_string;
-	int			upd;
 	int			cnt;
-	t_sprite	sprite;
 	t_ray		ray;
 	t_data		win;
 	t_tex		tex;
@@ -110,9 +95,8 @@ void			draw_floor(t_all *all);
 void			draw_3d(t_all *all, int wall, int luchi, double k);
 void			refresh_vars(t_all *all);
 void			sort(t_all *all, int cnt);
-void			draw_sprite(t_all *all, int q);
 int				valid_keys(char c, char d);
-int				create_screen(t_all *all);
+//int				create_screen(t_all *all);
 void			open_map(t_all *all, char *file_name);
 void			player_detect(t_all *all, int lines, int i);
 void			map_hole_check(t_all *all, int line_max);
@@ -125,7 +109,7 @@ void			resolution_parser(t_all *all, char *s);
 void			init_map_to_buffer(t_all *all);
 int				key_hook(int keycode, t_all *all);
 int				check_side2(t_all *all, int quarter);
-int				check_side(t_all *all);
+//int				check_side(t_all *all);
 void			isdone(t_all *all);
 int				no_clip(t_all *all, int a);
 void			no_clip2(t_all *all, int a, double *temppx, double *temppy);

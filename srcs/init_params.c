@@ -53,7 +53,6 @@ void	init_struct(t_all *all)
 	all->ray.py = 0;
 	all->ray.x = 0;
 	all->ray.y = 0;
-	all->ray.no_clip = 0;
 	all->cnt = 0;
 	all->win.bits_per_pixel = 0;
 	all->win.line_length = 0;
@@ -62,7 +61,6 @@ void	init_struct(t_all *all)
 	all->tex.s.path = NULL;
 	all->tex.e.path = NULL;
 	all->tex.w.path = NULL;
-	all->tex.sprite.path = NULL;
 	all->tex.floor_color = 0;
 	all->tex.ceiling_color = 0;
 }

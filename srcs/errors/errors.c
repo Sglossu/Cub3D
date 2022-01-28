@@ -20,9 +20,9 @@ void	ft_error(int code)
 
 void	error_check(t_all *all)
 {
-	(all->tex.e.path == NULL || all->tex.n.path == NULL ||
-	all->tex.s.path == NULL || all->tex.w.path == NULL ||
-	all->tex.sprite.path == NULL) ? ft_error(3) : 0;
+	if (all->tex.e.path == NULL || all->tex.n.path == NULL ||
+	all->tex.s.path == NULL || all->tex.w.path == NULL)
+		ft_error(3);
 	(all->tex.floor_color == 0 || all->tex.ceiling_color == 0) ?
 		ft_error(4) : 0;
 	(all->width <= 0 || all->height <= 0) ? ft_error(0) : 0;

@@ -17,9 +17,6 @@ void	map_in_array_parser(t_all *all, int cnt)
 				player_detect(all, lines, i);
 			if (all->map[lines][i] == '2') // delete 2 - sprites
 				all->cnt += 1;
-			if ((all->map[lines][i] == '1') && (all->map[lines][i + 1] != '\0')
-			&& (lines != 0) && (lines != cnt) && (i != 0))
-				all->map[lines][i] = '3'; // delete 3
 		}
 		lines++;
 	}

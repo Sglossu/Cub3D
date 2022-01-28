@@ -18,12 +18,6 @@ void	load_textures(t_all *all)
 	&all->tex.e.tex_width, &all->tex.e.tex_height);
 	all->tex.e.addr = mlx_get_data_addr(all->tex.e.img,
 	&all->tex.e.bits_per_pixel, &all->tex.e.line_length, &all->tex.e.endian);
-	all->tex.sprite.img = mlx_xpm_file_to_image(all->win.mlx,
-	all->tex.sprite.path, &all->tex.sprite.tex_width,
-	&all->tex.sprite.tex_height); // delete
-	all->tex.sprite.addr = mlx_get_data_addr(all->tex.sprite.img,
-	&all->tex.sprite.bits_per_pixel, // delete
-	&all->tex.sprite.line_length, &all->tex.sprite.endian);
 }
 
 int	close_window(void)

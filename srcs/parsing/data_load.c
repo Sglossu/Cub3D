@@ -62,7 +62,6 @@ void	sprite_parser(t_all *all, char *s, int code)
 		while (*s == ' ')
 			s += 1;
 		(open(s, O_RDONLY) < 0) ? exit(0) : 0;
-		all->tex.sprite.path = ft_strdup(s);
 		all->check.s = 1;
 	}
 }

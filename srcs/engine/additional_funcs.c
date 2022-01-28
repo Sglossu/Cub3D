@@ -14,14 +14,6 @@ void	refresh_vars(t_all *all)
 		all->info.sp_len[i] = -1;
 		i++;
 	}
-	all->sprite.start = 0;
-	all->sprite.end = 0;
-	all->sprite.left = 0;
-	all->sprite.right = 0;
-	all->sprite.fact_width = 0;
-	all->sprite.act_width = 0;
-	all->sprite.h_iter = 0;
-	all->sprite.w_iter = 0;
 }
 
 void	sort(t_all *all, int cnt)
