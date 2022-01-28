@@ -23,7 +23,6 @@ typedef	struct	s_check {
 	int			we;
 	int			ea;
 	int			no;
-	int			s;
 	int			c;
 	int			f;
 	int			done;
@@ -31,10 +30,8 @@ typedef	struct	s_check {
 
 typedef	struct	s_info {
 	int			*size;
-	int			*center;
 	int			*x;
 	int			*y;
-	double		*sp_len;
 	double		*luchi_array;
 }				t_info;
 

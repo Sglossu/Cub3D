@@ -52,19 +52,19 @@ void	tex_parser(t_all *all, char *s, int code)
 	}
 }
 
-void	sprite_parser(t_all *all, char *s, int code)
-{
-	if (code == 5 && check_xpm_extension(s))
-	{
-		(all->check.s) ? ft_error(101) : 0;
-		while (*s != ' ')
-			s += 1;
-		while (*s == ' ')
-			s += 1;
-		(open(s, O_RDONLY) < 0) ? exit(0) : 0;
-		all->check.s = 1;
-	}
-}
+//void	sprite_parser(t_all *all, char *s, int code)
+//{
+//	if (code == 5 && check_xpm_extension(s))
+//	{
+//		(all->check.s) ? ft_error(101) : 0;
+//		while (*s != ' ')
+//			s += 1;
+//		while (*s == ' ')
+//			s += 1;
+//		(open(s, O_RDONLY) < 0) ? exit(0) : 0;
+//		all->check.s = 1;
+//	}
+//}
 
 void	c_color_parser(t_all *all, char *s)
 {

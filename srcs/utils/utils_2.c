@@ -2,8 +2,8 @@
 
 int		access_symbols(char c)
 {
-	if (c == '1' || c == '2' || c == '0' || c == 'N' ||
-			c == 'W' || c == 'E' || c == 'S' || c == '3')
+	if (c == '1' || c == '0' || c == 'N' ||
+			c == 'W' || c == 'E' || c == 'S')
 		return (1);
 	else
 		return (0);

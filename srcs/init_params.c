@@ -14,12 +14,6 @@ void	init_arrays(t_all *all)
 	all->info.y = malloc(sizeof(int) * (all->cnt + 1));
 	if (!all->info.y)
 		ft_error(10);
-	all->info.center = malloc(sizeof(int) * (all->cnt + 1));
-	if (!all->info.center)
-		ft_error(10);
-	all->info.sp_len = malloc(sizeof(double) * (all->cnt + 1));
-	if (!all->info.sp_len)
-		ft_error(10);
 	all->info.luchi_array = malloc(sizeof(double) * (all->width + 1));
 	if (!all->info.luchi_array)
 		ft_error(10);
@@ -28,15 +22,11 @@ void	init_arrays(t_all *all)
 		all->info.x[i] = -1;
 		all->info.y[i] = -1;
 		all->info.size[i] = -1;
-		all->info.center[i] = 15000; // что это
-		all->info.sp_len[i] = -1; // а это
 		i++;
 	}
 	all->info.x[i] = '\0';
 	all->info.y[i] = '\0';
 	all->info.size[i] = '\0';
-	all->info.center[i] = '\0';
-	all->info.sp_len[i] = '\0';
 }
 
 void	init_struct(t_all *all)
@@ -72,7 +62,6 @@ void	init_checker(t_all *all)
 	all->check.we = 0;
 	all->check.ea = 0;
 	all->check.no = 0;
-	all->check.s = 0;
 	all->check.c = 0;
 	all->check.f = 0;
 	all->check.done = 0;

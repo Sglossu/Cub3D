@@ -77,7 +77,6 @@ int		get_values(t_all *all, char *line, int *i)
 	(line[0] == 'S' && line[1] == 'O') ? tex_parser(all, line + 2, 2) : 0;
 	(line[0] == 'W' && line[1] == 'E') ? tex_parser2(all, line + 2, 3) : 0;
 	(line[0] == 'E' && line[1] == 'A') ? tex_parser2(all, line + 2, 4) : 0;
-	(line[0] == 'S' && line[1] == ' ') ? sprite_parser(all, line, 5) : 0; // убрать спрайты
 	(line[0] == 'F') ? f_color_parser(all, line + 1) : 0;
 	(line[0] == 'C') ? c_color_parser(all, line + 1) : 0;
 	isdone(all);

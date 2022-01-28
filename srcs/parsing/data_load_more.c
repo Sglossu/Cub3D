@@ -40,7 +40,7 @@ void	isdone(t_all *all)
 {
 	if (all->check.r && all->check.no && all->check.so &&
 		all->check.we && all->check.ea && all->check.c &&
-		all->check.f && all->check.s && all->check.done != 2)
+		all->check.f && all->check.done != 2)
 		all->check.done = 1;
 }
 
@@ -49,7 +49,6 @@ int		valid_keys(char c, char d)
 	if ((c == 'R' && d == ' ') ||
 		(c == 'F' && d == ' ') ||
 	(c == 'C' && d == ' ') ||
-	(c == 'S' && d == ' ') ||
 	(c == 'N' && d == 'O') ||
 	(c == 'E' && d == 'A') ||
 	(c == 'W' && d == 'E') ||

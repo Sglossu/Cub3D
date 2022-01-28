@@ -43,7 +43,6 @@ all:			$(NAME)
 
 $(NAME):		$(MLX) $(OBJS) $(HEADER)
 				$(CC) ${CFLAGS} -o ${NAME} ${OBJS} ${LIBS}
-				$(RM) $(OBJS)
 
 
 $(MLX):
