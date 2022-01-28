@@ -64,10 +64,10 @@ void	init_map_to_buffer(t_all *all)
 		i = 0;
 		while (all->map[lines][i] != '\0')
 		{
-			(all->map[lines][i] == '1' || all->map[lines][i] == '3') ?
-				draw_minimap(all, i, lines, 0xeba134) : 0;
-			(all->map[lines][i] == '2') ?
-				draw_minimap(all, i, lines, 0x34aeeb) : 0;
+			if (all->map[lines][i] == '1' || all->map[lines][i] == '3')
+				draw_minimap(all, i, lines, 0xeba134);
+			if (all->map[lines][i] == '2')
+				draw_minimap(all, i, lines, 0x34aeeb);
 			i++;
 		}
 		lines++;

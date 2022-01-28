@@ -29,7 +29,7 @@
 # define ESC 53
 # define M 46
 
-typedef	struct	s_check {
+typedef struct s_check {
 	int			r;
 	int			so;
 	int			we;
@@ -40,14 +40,14 @@ typedef	struct	s_check {
 	int			done;
 }				t_check;
 
-typedef	struct	s_info {
+typedef struct s_info {
 	int			*size;
 	int			*x;
 	int			*y;
 	double		*luchi_array;
 }				t_info;
 
-typedef	struct	s_data {
+typedef struct s_data {
 	void		*img;
 	void		*mlx;
 	void		*mlx_win;
@@ -60,7 +60,7 @@ typedef	struct	s_data {
 	char		*path;
 }				t_data;
 
-typedef	struct	s_tex {
+typedef struct s_tex {
 	int			floor_color;
 	int			ceiling_color;
 	t_data		s;
@@ -69,7 +69,7 @@ typedef	struct	s_tex {
 	t_data		n;
 }				t_tex;
 
-typedef	struct	s_ray {
+typedef struct s_ray {
 	double		pdx;
 	double		pdy;
 	double		pa;
@@ -79,7 +79,7 @@ typedef	struct	s_ray {
 	double		y;
 }				t_ray;
 
-typedef	struct	s_all {
+typedef struct s_all {
 	int			width;
 	int			height;
 	int			side;
@@ -107,14 +107,12 @@ int				valid_keys(char c, char d);
 void			open_map(t_all *all, char *file_name);
 void			player_detect(t_all *all, int lines, int i);
 void			map_hole_check(t_all *all, int line_max);
-void			c_color_parser(t_all *all, char *s);
-void			f_color_parser(t_all *all, char *s);
+void			color_parser(t_all *all, char *s, char c, int i);
 void			tex_parser(t_all *all, char *s, int code);
 void			tex_parser2(t_all *all, char *s, int code);
 void			resolution_parser(t_all *all, char *s);
 void			init_map_to_buffer(t_all *all);
 int				key_hook(int keycode, t_all *all);
-int				check_side2(t_all *all, int quarter);
 void			isdone(t_all *all);
 int				no_clip(t_all *all, int a);
 void			no_clip2(t_all *all, int a, double *temppx, double *temppy);
@@ -128,10 +126,11 @@ double			fix_ang(double f);
 int				rgb_to_hex(int r, int g, int b);
 size_t			ft_strlen(char *str);
 char			*ft_strdup(const char *str);
+char			*ft_strdup_modified(t_all *all, const char *str);
 int				ft_atoi(const char *str);
 int				ft_isdigit(int ch);
-void			ft_bzero(void *s, size_t n);
 void			ft_error(int code);
 void			error_check(t_all *all);
+int				if_error_open(char *av);
 
 #endif

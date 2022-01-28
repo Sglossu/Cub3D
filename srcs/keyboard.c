@@ -64,7 +64,7 @@ void	move_rotate(t_all *all, int keycode)
 	}
 }
 
-int		key_hook(int keycode, t_all *all)
+int	key_hook(int keycode, t_all *all)
 {
 	if (keycode == FORWARD || keycode == BACK)
 		move_forward_and_back(all, keycode);

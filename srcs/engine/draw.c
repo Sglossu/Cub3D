@@ -27,10 +27,10 @@ void	init_3d_vars(t_all *all, double *iter, double *mx, int wall)
 	if (all->side == 2)
 		*mx = (all->ray.y - (int)all->ray.y) * all->tex.e.tex_width;
 	if (all->side == 3)
-		*mx = all->tex.s.tex_width -
+		*mx = all->tex.s.tex_width - \
 			(all->ray.x - (int)all->ray.x) * all->tex.s.tex_width;
 	if (all->side == 4)
-		*mx = all->tex.w.tex_width - (all->ray.y -
+		*mx = all->tex.w.tex_width - (all->ray.y - \
 			(int)all->ray.y) * all->tex.w.tex_width;
 }
 

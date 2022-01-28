@@ -16,11 +16,14 @@ void	player_detect(t_all *all, int lines, int i)
 {
 	if (all->ray.pa == -1)
 	{
-		(all->map[lines][i] == 'N') ?
-		all->ray.pa = M_PI * 3 / 2 : 0;
-		(all->map[lines][i] == 'E') ? all->ray.pa = 0 : 0;
-		(all->map[lines][i] == 'S') ? all->ray.pa = M_PI / 2 : 0;
-		(all->map[lines][i] == 'W') ? all->ray.pa = M_PI : 0;
+		if (all->map[lines][i] == 'N')
+			all->ray.pa = M_PI * 3 / 2;
+		if (all->map[lines][i] == 'E')
+			all->ray.pa = 0;
+		if (all->map[lines][i] == 'S')
+			all->ray.pa = M_PI / 2;
+		if (all->map[lines][i] == 'W')
+			all->ray.pa = M_PI;
 		all->ray.px = (double)i + .5;
 		all->ray.py = (double)lines + .5;
 	}
@@ -30,41 +33,45 @@ void	player_detect(t_all *all, int lines, int i)
 
 void	resolution_parser(t_all *all, char *s)
 {
-	(all->check.r) ? ft_error(101) : 0;
+	if (all->check.r)
+		ft_error(101);
 	while (!ft_isdigit(*s++))
 		;
 	all->width = ft_atoi(--s);
-	(all->width > 2560) ? all->width = 2560 : 0;
+	if (all->width > 2560)
+		all->width = 2560;
 	while (ft_isdigit(*s++))
 		;
 	while (!ft_isdigit(*s++))
 		;
 	all->height = ft_atoi(--s);
-	(all->height > 1440) ? all->height = 1440 : 0;
+	if (all->height > 1440)
+		all->height = 1440;
 	while (ft_isdigit(*s++))
 		;
 	s -= 1;
-	(!(*s == '\0')) ? ft_error(202) : 0;
+	if (!(*s == '\0'))
+		ft_error(202);
 	all->check.r = 1;
 }
 
 void	isdone(t_all *all)
 {
-	if (all->check.r && all->check.no && all->check.so &&
-		all->check.we && all->check.ea && all->check.c &&
+	if (all->check.r && all->check.no && all->check.so && \
+		all->check.we && all->check.ea && all->check.c && \
 		all->check.f && all->check.done != 2)
 		all->check.done = 1;
 }
 
-int		valid_keys(char c, char d)
+int	valid_keys(char c, char d)
 {
-	if ((c == 'R' && d == ' ') ||
-		(c == 'F' && d == ' ') ||
-	(c == 'C' && d == ' ') ||
-	(c == 'N' && d == 'O') ||
-	(c == 'E' && d == 'A') ||
-	(c == 'W' && d == 'E') ||
-	c == '\0' ||
+	if ((c == 'R' && d == ' ') || \
+		(c == 'F' && d == ' ') || \
+	(c == 'C' && d == ' ') || \
+	(c == 'N' && d == 'O') || \
+	(c == 'E' && d == 'A') || \
+	(c == 'W' && d == 'E') || \
+	c == '\0' || \
 	(c == 'S' && d == 'O'))
 		return (1);
 	else

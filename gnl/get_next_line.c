@@ -1,85 +1,121 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sglossu <sglossu@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/19 18:12:51 by sglossu           #+#    #+#             */
+/*   Updated: 2021/08/19 18:19:44 by sglossu          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
-static int	errors_check(char **remainder, int *ret, char **line)
+static	int	ft_free(char **line, char **buf, char **stat_buf, int ret)
 {
-	if (!*remainder && !*ret)
+	if (line && *line)
 	{
-		*line = ft_strdup("");
-		return (2);
+		free(*line);
+		*line = NULL;
 	}
-	if (*ret < 0)
+	if (buf && *buf)
 	{
-		if (*remainder != NULL)
-		{
-			free(*remainder);
-			*remainder = NULL;
-		}
-		return (1);
+		free(*buf);
+		*buf = NULL;
+	}
+	if (stat_buf && *stat_buf)
+	{
+		free(*stat_buf);
+		*stat_buf = NULL;
+	}
+	return (ret);
+}
+
+static	int	ft_search(char *buf)
+{
+	int	i;
+
+	i = 0;
+	while (buf[i] != '\0')
+	{
+		if (buf[i] == '\n')
+			return (1);
+		i++;
 	}
 	return (0);
 }
 
-static int	last_string(char **remainder, char **line)
+static	char	*new_str(int l)
 {
-	if (ft_strchr(*remainder, '\0'))
+	char	*res;
+	int		i;
+
+	i = 0;
+	res = (char *)malloc(sizeof(char) * l + 1);
+	if (!res)
+		return (NULL);
+	while (i < l)
 	{
-		*line = ft_strdup(*remainder);
-		if (!*line)
-			return (-1);
-		free(*remainder);
-		*remainder = NULL;
+		res[i] = 0;
+		i++;
 	}
-	return (0);
+	res[l] = '\0';
+	return (res);
 }
 
-static int	push_to_remainder(int ret, char **remainder, char **line)
+static	int	ft_reader(char **line, char *buf, char **stat_buf, int fd)
 {
-	char	*p;
-	char	*tmp;
+	int	flag;
+	int	bites;
 
-	if (errors_check(&*remainder, &ret, &*line) == 2)
-		return (0);
-	else if (errors_check(&*remainder, &ret, &*line))
-		return (-1);
-	if ((p = ft_strchr(*remainder, '\n')))
+	flag = 1;
+	while (flag)
 	{
-		*p = '\0';
-		*line = ft_strdup(*remainder);
-		tmp = ft_strdup(++p);
-		if (!*line || !tmp)
-			return (-1);
-		free(*remainder);
-		*remainder = tmp;
-		return (1);
-	}
-	return (last_string(&*remainder, &*line));
-}
-
-int			get_next_line(int fd, char **line)
-{
-	int			ret;
-	char		*buf;
-	char		*tmp;
-	static char	*remainder;
-
-	if (fd < 0 || !line || BUFFER_SIZE < 1 ||
-		!(buf = (char*)malloc(BUFFER_SIZE + 1)) || read(fd, buf, 0) < 0)
-		return (-1);
-	while ((ret = read(fd, buf, BUFFER_SIZE)))
-	{
-		buf[ret] = '\0';
-		if (remainder)
+		bites = read(fd, buf, 1024);
+		if (bites < 0 || *line == NULL)
+			return (ft_free(line, &buf, stat_buf, -1));
+		buf[bites] = '\0';
+		if (ft_search(buf))
 		{
-			tmp = ft_strjoin(remainder, buf);
-			free(remainder);
-			remainder = tmp;
+			*stat_buf = transposition(buf, *stat_buf, line);
+			if (*stat_buf == NULL)
+				return (ft_free(line, &buf, stat_buf, -1));
+			flag = 0;
 		}
 		else
-			remainder = ft_strdup(buf);
-		if (ft_strchr(buf, '\n'))
-			break ;
+			*line = ft_strjoin_gnl(*line, buf);
+		if (!bites)
+			return (ft_free(NULL, &buf, stat_buf, 0));
 	}
-	free(buf);
-	buf = NULL;
-	return (push_to_remainder(ret, &remainder, &*line));
+	return (ft_free(NULL, &buf, NULL, 1));
+}
+
+int	get_next_line(int fd, char **line)
+{
+	char			*buf;
+	static char		*stat_buf[1024];
+
+	if (!line || fd < 0)
+		return (-1);
+	if (fd < 0 || fd > 1024)
+		return (-1);
+	buf = malloc(sizeof(char) * (1024 + 1));
+	if (!buf)
+		return (-1);
+	if (stat_buf[fd])
+	{
+		if (ft_search(stat_buf[fd]))
+		{
+			*line = new_str(1);
+			stat_buf[fd] = transposition(stat_buf[fd], stat_buf[fd], line);
+			return (ft_free(NULL, &buf, NULL, 1));
+		}
+		*line = ft_strdup_gnl(stat_buf[fd], '\0');
+		if (*line == NULL)
+			return (ft_free(line, &buf, &stat_buf[fd], -1));
+	}
+	else
+		*line = new_str(1);
+	return (ft_free(NULL, NULL, NULL, ft_reader(line, buf, &stat_buf[fd], fd)));
 }

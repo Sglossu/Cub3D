@@ -15,12 +15,13 @@ CFLAGS			=	-Wall -Werror -Wextra -O3 -g -I.
 SRCS			=	main.c \
 					\
 					$(DIR_SRCS)keyboard.c			$(DIR_SRCS)minimap_draw.c \
-					$(DIR_SRCS)screenshot.c			$(DIR_SRCS)init_params.c \
+					$(DIR_SRCS)init_params.c \
 					\
 					$(DIR_GNL)get_next_line.c		$(DIR_GNL)get_next_line_utils.c \
 					\
 					$(DIR_PARSING)open_map.c		$(DIR_PARSING)edit_map.c \
 					$(DIR_PARSING)data_load.c		$(DIR_PARSING)data_load_more.c \
+					$(DIR_PARSING)color_parser.c \
 					\
 					$(DIR_ENGINE)raycasting.c		$(DIR_ENGINE)draw.c \
 					$(DIR_ENGINE)additional_funcs.c \

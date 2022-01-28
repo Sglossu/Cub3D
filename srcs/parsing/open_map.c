@@ -12,11 +12,10 @@
 
 #include "../../includes/cub3d.h"
 
-void	map_in_array_parser(t_all *all, int cnt)
+void	map_in_array_parser(t_all *all)
 {
 	int	i;
 	int	lines;
-	(void)cnt;
 
 	lines = 0;
 	while (all->map[lines] != NULL)
@@ -27,34 +26,14 @@ void	map_in_array_parser(t_all *all, int cnt)
 			if (all->map[lines][i] == 'N' || all->map[lines][i] == 'S' ||
 			all->map[lines][i] == 'W' || all->map[lines][i] == 'E')
 				player_detect(all, lines, i);
-			if (all->map[lines][i] == '2') // delete 2 - sprites
-				all->cnt += 1;
 		}
 		lines++;
 	}
-	(all->ray.pa == -1) ? ft_error(7) : 0;
+	if (all->ray.pa == -1)
+		ft_error(7);
 }
 
-char	*ft_strdup_modified(t_all *all, const char *str)
-{
-	int		i;
-	char	*copy;
-
-	i = 0;
-	if (!(copy = malloc(sizeof(char) * (all->longer_string + 1))))
-		exit(0);
-	while (str[i] != '\0')
-	{
-		copy[i] = str[i];
-		i++;
-	}
-	while (i < all->longer_string)
-		copy[i++] = ' ';
-	copy[i] = '\0';
-	return (copy);
-}
-
-int		line_count(t_all *all, char *av, int fd)
+int	line_count(t_all *all, char *av, int fd)
 {
 	char	*line;
 	int		i;
@@ -80,17 +59,29 @@ int		line_count(t_all *all, char *av, int fd)
 	return (i);
 }
 
-int		get_values(t_all *all, char *line, int *i)
+void	check_first_and_second_symbol(t_all *all, char *line)
 {
-	if (line[0] == '\0' && all->check.done != 2) // what is check.done
+	if (line[0] == 'R')
+		resolution_parser(all, line);
+	if (line[0] == 'N' && line[1] == 'O')
+		tex_parser(all, line + 2, 1);
+	if (line[0] == 'S' && line[1] == 'O')
+		tex_parser(all, line + 2, 2);
+	if (line[0] == 'W' && line[1] == 'E')
+		tex_parser2(all, line + 2, 3);
+	if (line[0] == 'E' && line[1] == 'A')
+		tex_parser2(all, line + 2, 4);
+	if (line[0] == 'F')
+		color_parser(all, line + 1, 'f', 0);
+	if (line[0] == 'C')
+		color_parser(all, line + 1, 'c', 0);
+}
+
+int	get_values(t_all *all, char *line, int *i)
+{
+	if (line[0] == '\0' && all->check.done != 2)
 		return (1);
-	(line[0] == 'R') ? resolution_parser(all, line) : 0;
-	(line[0] == 'N' && line[1] == 'O') ? tex_parser(all, line + 2, 1) : 0;
-	(line[0] == 'S' && line[1] == 'O') ? tex_parser(all, line + 2, 2) : 0;
-	(line[0] == 'W' && line[1] == 'E') ? tex_parser2(all, line + 2, 3) : 0;
-	(line[0] == 'E' && line[1] == 'A') ? tex_parser2(all, line + 2, 4) : 0;
-	(line[0] == 'F') ? f_color_parser(all, line + 1) : 0;
-	(line[0] == 'C') ? c_color_parser(all, line + 1) : 0;
+	check_first_and_second_symbol(all, line);
 	isdone(all);
 	if ((access_symbols(line[0]) || line[0] == ' ') && all->check.done)
 	{
@@ -113,21 +104,15 @@ void	open_map(t_all *all, char *av)
 	int		line_cnt;
 
 	i = 0;
-	fd = open(av, O_DIRECTORY);
-	if (fd != -1)
-		ft_error(8);
-	close(fd);
-	fd = open(av, O_RDONLY);
-	if (fd < 0)
-		ft_error(11);
+	fd = if_error_open(av);
 	line_cnt = line_count(all, av, fd);
-	all->map = (char**)malloc(sizeof(char*) * line_cnt);
+	all->map = (char **)malloc(sizeof(char *) * line_cnt);
 	if (!all->map)
 		ft_error(10);
 	while (get_next_line(fd, &line) > 0)
 	{
 		if (get_values(all, line, &i) == 1)
-			continue;
+			continue ;
 		free(line);
 	}
 	all->map[i++] = ft_strdup_modified(all, line);
@@ -136,5 +121,5 @@ void	open_map(t_all *all, char *av)
 	line = NULL;
 	error_check(all);
 	map_hole_check(all, line_cnt - 2);
-	map_in_array_parser(all, line_cnt - 2);
+	map_in_array_parser(all);
 }

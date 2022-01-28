@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
- #include "../../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 void	refresh_vars(t_all *all)
 {
@@ -25,5 +25,3 @@ void	refresh_vars(t_all *all)
 		i++;
 	}
 }
-
-

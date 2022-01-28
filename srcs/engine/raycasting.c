@@ -12,6 +12,24 @@
 
 #include "../../includes/cub3d.h"
 
+void	quater_side(t_all *all, int quarter, int k)
+{
+	if (k == 1)
+	{
+		if (quarter == 4 || quarter == 1)
+			all->side = 1;
+		if (quarter == 2 || quarter == 3)
+			all->side = 3;
+	}
+	else
+	{
+		if (quarter == 1 || quarter == 2)
+			all->side = 2;
+		if (quarter == 3 || quarter == 4)
+			all->side = 4;
+	}
+}
+
 double	find_side(t_all *all, int quarter, double start)
 {
 	while (1)
@@ -21,11 +39,8 @@ double	find_side(t_all *all, int quarter, double start)
 			all->ray.x += 0.005 * cos(start);
 		else
 		{
-			if (quarter == 4 || quarter == 1)
-				all->side = 1;
-			if (quarter == 2 || quarter == 3)
-				all->side = 3;
-			return (sqrt(pow(all->ray.x - all->ray.px, 2) +
+			quater_side(all, quarter, 1);
+			return (sqrt(pow(all->ray.x - all->ray.px, 2) + \
 			pow(all->ray.y - all->ray.py, 2)));
 		}
 		if (all->map[(int)all->ray.y][(int)all->ray.x] != '1' &&
@@ -33,18 +48,15 @@ double	find_side(t_all *all, int quarter, double start)
 			all->ray.y += 0.005 * sin(start);
 		else
 		{
-			if (quarter == 1 || quarter == 2)
-				all->side = 2;
-			if (quarter == 3 || quarter == 4)
-				all->side = 4;
-			return (sqrt(pow(all->ray.x - all->ray.px, 2) +
+			quater_side(all, quarter, 2);
+			return (sqrt(pow(all->ray.x - all->ray.px, 2) + \
 			pow(all->ray.y - all->ray.py, 2)));
 		}
 	}
 	return (0);
 }
 
-int		quarter_set(double start)
+int	quarter_set(double start)
 {
 	if (fix_ang(start) >= 3 * M_PI / 2 && fix_ang(start) < 2 * M_PI)
 		return (1);
@@ -73,7 +85,7 @@ void	draw(t_all *all)
 		all->ray.y = all->ray.py;
 		ray_len = find_side(all, quarter_set(start), fix_ang(start));
 		all->info.luchi_array[luchi] = ray_len;
-		wall = (int)((double)all->width / (ray_len * cos(all->ray.pa - start))); // высота картинки
+		wall = (int)((double)all->width / (ray_len * cos(all->ray.pa - start)));
 		draw_3d(all, wall, luchi, 0);
 		start += (M_PI / 4) / (all->width);
 	}

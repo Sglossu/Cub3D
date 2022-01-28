@@ -31,7 +31,7 @@ void	fill_spaces(t_all *all)
 	}
 }
 
-int		passed_symbols(t_all *all, int lines, int i)
+int	passed_symbols(t_all *all, int lines, int i)
 {
 	if (all->map[lines][i] == '0' || all->map[lines][i] == '2' ||
 	all->map[lines][i] == 'N' || all->map[lines][i] == 'S' ||
@@ -41,9 +41,9 @@ int		passed_symbols(t_all *all, int lines, int i)
 		return (0);
 }
 
-int		external_symbols(t_all *all, int lines, int i, int line_max)
+int	external_symbols(t_all *all, int lines, int i, int line_max)
 {
-	if (lines == 0 || lines == line_max || i == 0 ||
+	if (lines == 0 || lines == line_max || i == 0 || \
 	all->map[lines][i + 1] == ' ' || all->map[lines][i + 1] == '\0')
 		return (1);
 	else
@@ -52,8 +52,8 @@ int		external_symbols(t_all *all, int lines, int i, int line_max)
 
 void	test(t_all *all, int lines, int i, int line_max)
 {
-	if (lines != 0 || lines != line_max || i != 0 ||
-	all->map[lines][i + 1] != ' ' ||
+	if (lines != 0 || lines != line_max || i != 0 || \
+	all->map[lines][i + 1] != ' ' || \
 	all->map[lines][i + 1] != '\0')
 		if (passed_symbols(all, lines, i))
 			if (!access_symbols(all->map[lines][i + 1]) ||

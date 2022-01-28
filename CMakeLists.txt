@@ -20,7 +20,7 @@ FILE(GLOB SRC
         "gnl/*.c"
         "srcs/errors/*.c")
 
-add_executable(Cub3D ${SRC})
+add_executable(Cub3D ${SRC} srcs/parsing/color_parser.c)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -L ${CMAKE_CURRENT_SOURCE_DIR}/minilibx_opengl/ -framework OpenGL -framework AppKit")
 
 include_directories(Cub3D ${CMAKE_CURRENT_SOURCE_DIR}/includes/)			# Расположение заголовочных файлов

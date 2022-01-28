@@ -29,18 +29,18 @@ void	no_clip2(t_all *all, int a, double *temppx, double *temppy)
 void	new_image(t_all *all)
 {
 	all->win.img = mlx_new_image(all->win.mlx, all->width, all->height);
-	all->win.addr = mlx_get_data_addr(all->win.img, &all->win.bits_per_pixel,
-									  &all->win.line_length, &all->win.endian);
+	all->win.addr = mlx_get_data_addr(all->win.img, &all->win.bits_per_pixel, \
+	&all->win.line_length, &all->win.endian);
 }
 
-int		ft_isdigit(int ch)
+int	ft_isdigit(int ch)
 {
 	if (ch >= '0' && ch <= '9')
 		return (1);
 	return (0);
 }
 
-int		ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int					i;
 	int					ink;
@@ -51,7 +51,7 @@ int		ft_atoi(const char *str)
 	num = 0;
 	if (!str[i])
 		return (0);
-	while (str[i] == '\n' || str[i] == '\t' || str[i] == '\v'
+	while (str[i] == '\n' || str[i] == '\t' || str[i] == '\v' \
 	|| str[i] == '\f' || str[i] == ' ' || str[i] == '\r')
 		i += 1;
 	if (str[i] == '+' || str[i] == '-')
@@ -68,13 +68,23 @@ int		ft_atoi(const char *str)
 	return (num * ink);
 }
 
-void	ft_bzero(void *s, size_t n)
+char	*ft_strdup(const char *str)
 {
-	char	*src;
 	int		i;
+	char	*copy;
 
 	i = 0;
-	src = s;
-	while (i < (int)n)
-		src[i++] = '\0';
+	while (str[i] != '\0')
+		i++;
+	copy = malloc(i + 1);
+	if (!copy)
+		exit(0);
+	i = 0;
+	while (str[i] != '\0')
+	{
+		copy[i] = str[i];
+		i++;
+	}
+	copy[i] = '\0';
+	return (copy);
 }
