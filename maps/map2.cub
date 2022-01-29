@@ -1,13 +1,13 @@
 R 1024 768
 
-NO ./tex/11.xpm
-WE ./tex/ice.xpm
-EA ./tex/ice.xpm
-SO ./tex/11.xpm
+NO ./tex/no.xpm
+WE ./tex/we.xpm
+EA ./tex/ea.xpm
+SO ./tex/so.xpm
 
 
-C 172, 200, 245
-F 0, 78, 122
+C 23, 13, 21
+F 71, 65, 70
 
 
 11111111111111111
