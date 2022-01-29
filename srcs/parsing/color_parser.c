@@ -36,6 +36,21 @@ void	set_gb(int *g, int *b, int i, char *s)
 		*b = ft_atoi(s);
 }
 
+void	check_error_color(t_all *all, char *s, char c)
+{
+	int	i;
+
+	i = 1;
+	if ((c == 'f' && all->check.f) || (c == 'c' && all->check.c))
+		ft_error(101);
+	while (s[i])
+	{
+		if (s[i] != ' ' && s[i] != ',' && !ft_isdigit(s[i]))
+			ft_error(4);
+		i++;
+	}
+}
+
 void	color_parser(t_all *all, char *s, char c, int i)
 {
 	int	r;
@@ -45,12 +60,11 @@ void	color_parser(t_all *all, char *s, char c, int i)
 	r = -1;
 	g = -1;
 	b = -1;
-	if ((c == 'f' && all->check.f) || (c == 'c' && all->check.c))
-		ft_error(101);
+	check_error_color(all, s, c);
 	while (*s != '\0')
 	{
 		while (!ft_isdigit(*s))
-			s += 1;
+			s++;
 		if (!i)
 			r = ft_atoi(s);
 		else

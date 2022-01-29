@@ -21,7 +21,7 @@ void	tex_parser2(t_all *all, char *s, int code)
 		while (*s == ' ')
 			s += 1;
 		if (open(s, O_RDONLY) < 0)
-			exit(0);
+			ft_error(11);
 		all->tex.w.path = ft_strdup(s);
 		all->check.we = 1;
 	}
@@ -32,7 +32,7 @@ void	tex_parser2(t_all *all, char *s, int code)
 		while (*s == ' ')
 			s += 1;
 		if (open(s, O_RDONLY) < 0)
-			exit(0);
+			ft_error(11);
 		all->tex.e.path = ft_strdup(s);
 		all->check.ea = 1;
 	}
@@ -47,7 +47,7 @@ void	tex_parser(t_all *all, char *s, int code)
 		while (*s == ' ')
 			s += 1;
 		if (open(s, O_RDONLY) < 0)
-			exit(0);
+			ft_error(11);
 		all->tex.n.path = ft_strdup(s);
 		all->check.no = 1;
 	}
@@ -58,7 +58,7 @@ void	tex_parser(t_all *all, char *s, int code)
 		while (*s == ' ')
 			s += 1;
 		if (open(s, O_RDONLY) < 0)
-			exit(0);
+			ft_error(11);
 		all->tex.s.path = ft_strdup(s);
 		all->check.so = 1;
 	}

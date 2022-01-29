@@ -25,9 +25,7 @@ void	draw_rays(t_all *all)
 	{
 		x = all->ray.px * all->scale;
 		y = all->ray.py * all->scale;
-		while (all->map[(int)y / all->scale][(int)x / all->scale] != '1' &&
-				all->map[(int)y / all->scale][(int)x / all->scale] != '2' &&
-				all->map[(int)y / all->scale][(int)x / all->scale] != '3')
+		while (all->map[(int)y / all->scale][(int)x / all->scale] != '1')
 		{
 			x += cos(start);
 			y += sin(start);
@@ -64,10 +62,8 @@ void	init_map_to_buffer(t_all *all)
 		i = 0;
 		while (all->map[lines][i] != '\0')
 		{
-			if (all->map[lines][i] == '1' || all->map[lines][i] == '3')
+			if (all->map[lines][i] == '1')
 				draw_minimap(all, i, lines, 0xeba134);
-			if (all->map[lines][i] == '2')
-				draw_minimap(all, i, lines, 0x34aeeb);
 			i++;
 		}
 		lines++;

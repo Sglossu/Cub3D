@@ -35,16 +35,16 @@ void	resolution_parser(t_all *all, char *s)
 {
 	if (all->check.r)
 		ft_error(101);
-	while (!ft_isdigit(*s++))
-		;
-	all->width = ft_atoi(--s);
+	while (*s == ' ')
+		s++;
+	all->width = ft_atoi(s);
 	if (all->width > 2560)
 		all->width = 2560;
 	while (ft_isdigit(*s++))
 		;
-	while (!ft_isdigit(*s++))
-		;
-	all->height = ft_atoi(--s);
+	while (*s == ' ')
+		s++;
+	all->height = ft_atoi(s);
 	if (all->height > 1440)
 		all->height = 1440;
 	while (ft_isdigit(*s++))

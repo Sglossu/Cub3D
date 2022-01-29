@@ -34,8 +34,7 @@ double	find_side(t_all *all, int quarter, double start)
 {
 	while (1)
 	{
-		if (all->map[(int)all->ray.y][(int)all->ray.x] != '1' &&
-		all->map[(int)all->ray.y][(int)all->ray.x] != '3')
+		if (all->map[(int)all->ray.y][(int)all->ray.x] != '1')
 			all->ray.x += 0.005 * cos(start);
 		else
 		{
@@ -43,8 +42,7 @@ double	find_side(t_all *all, int quarter, double start)
 			return (sqrt(pow(all->ray.x - all->ray.px, 2) + \
 			pow(all->ray.y - all->ray.py, 2)));
 		}
-		if (all->map[(int)all->ray.y][(int)all->ray.x] != '1' &&
-		all->map[(int)all->ray.y][(int)all->ray.x] != '3')
+		if (all->map[(int)all->ray.y][(int)all->ray.x] != '1')
 			all->ray.y += 0.005 * sin(start);
 		else
 		{

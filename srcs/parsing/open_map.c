@@ -62,7 +62,7 @@ int	line_count(t_all *all, char *av, int fd)
 void	check_first_and_second_symbol(t_all *all, char *line)
 {
 	if (line[0] == 'R')
-		resolution_parser(all, line);
+		resolution_parser(all, line + 1);
 	if (line[0] == 'N' && line[1] == 'O')
 		tex_parser(all, line + 2, 1);
 	if (line[0] == 'S' && line[1] == 'O')
@@ -110,11 +110,7 @@ void	open_map(t_all *all, char *av)
 	if (!all->map)
 		ft_error(10);
 	while (get_next_line(fd, &line) > 0)
-	{
-		if (get_values(all, line, &i) == 1)
-			continue ;
-		free(line);
-	}
+		get_values(all, line, &i);
 	all->map[i++] = ft_strdup_modified(all, line);
 	all->map[i] = NULL;
 	free(line);
